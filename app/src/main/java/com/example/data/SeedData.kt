@@ -1,0 +1,380 @@
+package com.example.data
+
+import com.example.domain.AnonymousIdentityItem
+import com.example.domain.CommentItem
+import com.example.domain.CommentReply
+import com.example.domain.CommunityItem
+import com.example.domain.CommunityType
+import com.example.domain.NotificationItem
+import com.example.domain.NotificationType
+import com.example.domain.PersistedSocialStore
+import com.example.domain.PostCategory
+import com.example.domain.PostItem
+import com.example.domain.PostStatus
+import com.example.domain.ReactionType
+import com.example.domain.Visibility
+
+object SeedData {
+    val trendingTopics = listOf(
+        "#BengaluruRains",
+        "#MetroConfessions",
+        "#RentPrices",
+        "#FilterCoffee",
+        "#CampusFests",
+        "#LateNightFood",
+    )
+
+    fun createInitialStore(nowMillis: Long = System.currentTimeMillis()): PersistedSocialStore {
+        fun minsAgo(m: Int) = nowMillis - m * 60_000L
+
+        val communities = listOf(
+            CommunityItem(
+                id = "city-bengaluru",
+                name = "Bengaluru",
+                slug = "bengaluru",
+                type = CommunityType.CITY,
+                city = "Bengaluru",
+                state = "Karnataka",
+                memberCount = 14820,
+                isJoined = true,
+                description = "City-wide anonymous conversations, traffic alerts, and late-night thoughts across namma Bengaluru.",
+            ),
+            CommunityItem(
+                id = "nbh-koramangala",
+                name = "Koramangala",
+                slug = "koramangala",
+                type = CommunityType.NEIGHBORHOOD,
+                city = "Bengaluru",
+                state = "Karnataka",
+                memberCount = 4210,
+                isJoined = true,
+                description = "Startup gossip, best filter coffee spots, power cut updates, and flatmate stories in Koramangala.",
+            ),
+            CommunityItem(
+                id = "nbh-indiranagar",
+                name = "Indiranagar",
+                slug = "indiranagar",
+                type = CommunityType.NEIGHBORHOOD,
+                city = "Bengaluru",
+                state = "Karnataka",
+                memberCount = 3580,
+                isJoined = false,
+                description = "100ft Road chatter, weekend plans, and local recommendations.",
+            ),
+            CommunityItem(
+                id = "city-mumbai",
+                name = "Mumbai",
+                slug = "mumbai",
+                type = CommunityType.CITY,
+                city = "Mumbai",
+                state = "Maharashtra",
+                memberCount = 19400,
+                isJoined = false,
+                description = "Local train stories, monsoon alerts, and real talk across Mumbai.",
+            ),
+            CommunityItem(
+                id = "nbh-bandra",
+                name = "Bandra",
+                slug = "bandra",
+                type = CommunityType.NEIGHBORHOOD,
+                city = "Mumbai",
+                state = "Maharashtra",
+                memberCount = 5120,
+                isJoined = false,
+                description = "Bandra West cafes, Bandstand evenings, and neighborhood buzz.",
+            ),
+            CommunityItem(
+                id = "city-delhi",
+                name = "Delhi",
+                slug = "delhi",
+                type = CommunityType.CITY,
+                city = "Delhi",
+                state = "Delhi",
+                memberCount = 16750,
+                isJoined = false,
+                description = "Metro confessions, street food debates, and NCR updates.",
+            ),
+            CommunityItem(
+                id = "campus-du",
+                name = "North Campus DU",
+                slug = "north-campus-du",
+                type = CommunityType.CAMPUS,
+                city = "Delhi",
+                state = "Delhi",
+                memberCount = 6890,
+                isJoined = false,
+                description = "Campus fests, hostel stories, exam stress, and anonymous confessions.",
+            ),
+            CommunityItem(
+                id = "city-hyderabad",
+                name = "Hyderabad",
+                slug = "hyderabad",
+                type = CommunityType.CITY,
+                city = "Hyderabad",
+                state = "Telangana",
+                memberCount = 11200,
+                isJoined = false,
+                description = "HITEC City commutes, biryani debates, and local community stories.",
+            ),
+            CommunityItem(
+                id = "city-pune",
+                name = "Pune",
+                slug = "pune",
+                type = CommunityType.CITY,
+                city = "Pune",
+                state = "Maharashtra",
+                memberCount = 8940,
+                isJoined = false,
+                description = "Koregaon Park hangouts, college life, and Pune traffic vents.",
+            ),
+            CommunityItem(
+                id = "city-chennai",
+                name = "Chennai",
+                slug = "chennai",
+                type = CommunityType.CITY,
+                city = "Chennai",
+                state = "Tamil Nadu",
+                memberCount = 7430,
+                isJoined = false,
+                description = "Marina mornings, filter kaapi, and neighborhood conversations.",
+            ),
+        )
+
+        val posts = listOf(
+            PostItem(
+                id = "post-1",
+                anonymousName = "Anonymous #0421",
+                authorUserId = "demo-author-1",
+                category = PostCategory.CONFESSION,
+                content = "Finally turned down a higher-paying job in another city because I could not leave my evening walks around Cubbon Park and my small circle here. Everyone thinks I made a mistake, honestly feels like relief.",
+                status = PostStatus.PUBLISHED,
+                communityId = "city-bengaluru",
+                communityName = "Bengaluru",
+                city = "Bengaluru",
+                commentCount = 3,
+                reactionCount = 42,
+                reactionCounts = mapOf(
+                    ReactionType.HEART to 24,
+                    ReactionType.LIKE to 15,
+                    ReactionType.WOW to 3,
+                ),
+                myReaction = null,
+                isSaved = false,
+                commentsEnabled = true,
+                visibility = Visibility.COMMUNITY,
+                createdAtMillis = minsAgo(18),
+            ),
+            PostItem(
+                id = "post-2",
+                anonymousName = "Anonymous #1084",
+                authorUserId = "demo-author-2",
+                category = PostCategory.LOCAL_ALERT,
+                content = "Heavy waterlogging near Silk Board flyover ramp towards HSR right now. Two-wheelers are taking the service lane—give yourself an extra 30 mins if heading that way.",
+                status = PostStatus.PUBLISHED,
+                communityId = "city-bengaluru",
+                communityName = "Bengaluru",
+                city = "Bengaluru",
+                commentCount = 1,
+                reactionCount = 68,
+                reactionCounts = mapOf(
+                    ReactionType.LIKE to 52,
+                    ReactionType.WOW to 12,
+                    ReactionType.SAD to 4,
+                ),
+                myReaction = ReactionType.LIKE,
+                isSaved = true,
+                commentsEnabled = true,
+                visibility = Visibility.PUBLIC,
+                createdAtMillis = minsAgo(45),
+            ),
+            PostItem(
+                id = "post-3",
+                anonymousName = "Anonymous #0092",
+                authorUserId = "demo-user",
+                category = PostCategory.QUESTION,
+                content = "Looking for quiet late-night cafes in Koramangala 4th Block or Indiranagar that stay open past 1 AM with decent Wi-Fi and power sockets. Any hidden gems?",
+                status = PostStatus.PUBLISHED,
+                communityId = "nbh-koramangala",
+                communityName = "Koramangala",
+                city = "Bengaluru",
+                commentCount = 1,
+                reactionCount = 19,
+                reactionCounts = mapOf(
+                    ReactionType.LIKE to 14,
+                    ReactionType.HEART to 5,
+                ),
+                myReaction = null,
+                isSaved = false,
+                commentsEnabled = true,
+                visibility = Visibility.COMMUNITY,
+                createdAtMillis = minsAgo(110),
+            ),
+            PostItem(
+                id = "post-4",
+                anonymousName = "Anonymous #3319",
+                authorUserId = "demo-author-4",
+                category = PostCategory.RANT,
+                content = "Why do landlords quote 10 months deposit for an unfurnished 1BHK and then act shocked when tenants push back? Market needs a reality check.",
+                status = PostStatus.PUBLISHED,
+                communityId = "city-bengaluru",
+                communityName = "Bengaluru",
+                city = "Bengaluru",
+                commentCount = 0,
+                reactionCount = 91,
+                reactionCounts = mapOf(
+                    ReactionType.ANGRY to 48,
+                    ReactionType.LIKE to 31,
+                    ReactionType.LAUGH to 12,
+                ),
+                myReaction = null,
+                isSaved = false,
+                commentsEnabled = true,
+                visibility = Visibility.COMMUNITY,
+                createdAtMillis = minsAgo(240),
+            ),
+            PostItem(
+                id = "post-5",
+                anonymousName = "Anonymous #2107",
+                authorUserId = "demo-author-5",
+                category = PostCategory.STORY,
+                content = "A stranger on the Western Line fast local gave up their window seat when they saw I was barely staying awake after a 14-hour hospital shift. Mumbai kindness hits different.",
+                status = PostStatus.PUBLISHED,
+                communityId = "city-mumbai",
+                communityName = "Mumbai",
+                city = "Mumbai",
+                commentCount = 0,
+                reactionCount = 112,
+                reactionCounts = mapOf(
+                    ReactionType.HEART to 88,
+                    ReactionType.LIKE to 24,
+                ),
+                myReaction = null,
+                isSaved = false,
+                commentsEnabled = true,
+                visibility = Visibility.COMMUNITY,
+                createdAtMillis = minsAgo(90),
+            ),
+            PostItem(
+                id = "post-6",
+                anonymousName = "Anonymous #0774",
+                authorUserId = "demo-author-6",
+                category = PostCategory.CAMPUS,
+                content = "Library AC on the 3rd floor is finally working again right before mid-sems! Grab seats before 9:30 AM though.",
+                status = PostStatus.PUBLISHED,
+                communityId = "campus-du",
+                communityName = "North Campus DU",
+                city = "Delhi",
+                commentCount = 0,
+                reactionCount = 34,
+                reactionCounts = mapOf(
+                    ReactionType.LAUGH to 18,
+                    ReactionType.LIKE to 16,
+                ),
+                myReaction = null,
+                isSaved = false,
+                commentsEnabled = true,
+                visibility = Visibility.COMMUNITY,
+                createdAtMillis = minsAgo(150),
+            ),
+        )
+
+        val comments = listOf(
+            CommentItem(
+                id = "c-101",
+                postId = "post-1",
+                anonymousName = "Anonymous #0812",
+                content = "Mental peace beats a marginal bump after tax & rent every single time. Proud of you.",
+                createdAtMillis = minsAgo(14),
+                replies = listOf(
+                    CommentReply(
+                        id = "c-101-r1",
+                        anonymousName = "Anonymous #0421",
+                        content = "Thank you, really needed to hear that today.",
+                        createdAtMillis = minsAgo(10),
+                    ),
+                ),
+            ),
+            CommentItem(
+                id = "c-102",
+                postId = "post-1",
+                anonymousName = "Anonymous #1503",
+                content = "Cubbon Park Sunday mornings are genuinely irreplaceable.",
+                createdAtMillis = minsAgo(8),
+                replies = emptyList(),
+            ),
+            CommentItem(
+                id = "c-201",
+                postId = "post-2",
+                anonymousName = "Anonymous #0640",
+                content = "Thanks for the heads up! Taking the metro from Bellandur route instead.",
+                createdAtMillis = minsAgo(35),
+                replies = emptyList(),
+            ),
+            CommentItem(
+                id = "c-301",
+                postId = "post-3",
+                anonymousName = "Anonymous #1930",
+                content = "Third Wave on 80ft road stays open late on weekends, and Matthan hotel lobby cafe is super peaceful.",
+                createdAtMillis = minsAgo(85),
+                replies = emptyList(),
+            ),
+        )
+
+        val notifications = listOf(
+            NotificationItem(
+                id = "notif-1",
+                type = NotificationType.COMMENT_REPLY,
+                referenceId = "post-3",
+                title = "New reply on your Question",
+                body = "Anonymous #1930 replied in Koramangala: \"Third Wave on 80ft road stays open late...\"",
+                isRead = false,
+                createdAtMillis = minsAgo(22),
+            ),
+            NotificationItem(
+                id = "notif-2",
+                type = NotificationType.REACTION,
+                referenceId = "post-3",
+                title = "19 people reacted to your post",
+                body = "Your post in Koramangala is gaining traction.",
+                isRead = false,
+                createdAtMillis = minsAgo(55),
+            ),
+            NotificationItem(
+                id = "notif-3",
+                type = NotificationType.SYSTEM,
+                referenceId = null,
+                title = "Welcome to diriddle",
+                body = "Your community-scoped anonymous identities are active. Zero personal info is ever shared.",
+                isRead = true,
+                createdAtMillis = minsAgo(320),
+            ),
+        )
+
+        val identities = listOf(
+            AnonymousIdentityItem(
+                id = "id-1",
+                communityId = "city-bengaluru",
+                communityName = "Bengaluru",
+                displayCode = "Anonymous #0317",
+                createdAtMillis = minsAgo(1440),
+            ),
+            AnonymousIdentityItem(
+                id = "id-2",
+                communityId = "nbh-koramangala",
+                communityName = "Koramangala",
+                displayCode = "Anonymous #0092",
+                createdAtMillis = minsAgo(720),
+            ),
+        )
+
+        return PersistedSocialStore(
+            communities = communities,
+            posts = posts,
+            comments = comments,
+            notifications = notifications,
+            identities = identities,
+            blockedAccounts = emptyList(),
+            reports = emptyList(),
+        )
+    }
+}

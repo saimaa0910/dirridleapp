@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">diriddle</string>
+    <string name="tagline">Your city, unfiltered &amp; anonymous.</string>
+    <string name="brand_title">diriddle</string>
+    <string name="age_gate_badge">18+ Community Gate</string>
+    <string name="age_gate_title">Age &amp; Safety Agreement</string>
+    <string name="error_pii_blocked">For everyone’s privacy, posts cannot include phone numbers, emails, or personal identifiers.</string>
+</resources>

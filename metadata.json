@@ -1,0 +1,8 @@
+{
+  "name": "diriddle",
+  "description": "Anonymous, hyperlocal social network for Indian cities, neighborhoods, and campuses with 18+ safety gate, community-scoped anonymous handles, PII moderation, and safety controls.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
